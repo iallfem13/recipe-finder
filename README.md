@@ -32,6 +32,8 @@ docker run --rm \
 `./vendor/bin/sail npm install --prefix frontend`
 
 ### Run the frontend
+`./vendor/bin/sail npm run dev`
+
 `./vendor/bin/sail npm run dev --prefix frontend`
 
 ### Confirm your application
