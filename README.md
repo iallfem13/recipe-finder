@@ -4,12 +4,8 @@
 - docker
 - docker-compose
 
-### Check out this repository
-`git clone git@github.com:wildalaskan/skeleton-app-vue.git`
-
-`cd skeleton-app-vue`
-
 ### Run composer to kickstart laravel sail
+Inside the project, run:
 
 ```bash
 docker run --rm \
@@ -29,6 +25,9 @@ docker run --rm \
 
 `./vendor/bin/sail artisan migrate`
 
+### Seed the database
+`./vendor/bin/sail artisan db:seed`
+
 ### Kickstart the nuxt frontend
 `./vendor/bin/sail npm install --prefix frontend`
 
@@ -36,16 +35,11 @@ docker run --rm \
 `./vendor/bin/sail npm run dev --prefix frontend`
 
 ### Confirm your application
-visit the frontend http://localhost:3000
+Visit the frontend http://localhost:3000
 
-visit the backend http://localhost:8888
+### Run tests
+`./vendor/bin/phpunit`
 
+### Notes
+An database schema can be found [here](db_schema.png)
 
-### Connecting to your database from localhost
-`docker exec -it laravel-mysql-1 bash -c "mysql -uroot -ppassword"`
-
-Or use any database GUI and connect to 127.0.0.1 port 3333
-
-
-### Other tips
-`./vendor/bin/sail down` to bring down the stack
