@@ -25,3 +25,11 @@
     </div>
 </template>
 
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+    document.title = "WAC Asesome Search Engine 3000"
+})
+</script>
+

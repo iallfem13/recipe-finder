@@ -19,7 +19,11 @@
                         <span v-if="availableOptions.length">
                             <input v-model="currentValue" :placeholder="currentType ? `Enter ${currentType}...` : 'Select filter type...'" 
                                 class=" min-w-[100px] bg-transparent px-1 py-1 outline-none" 
-                                @focus="showDropdown = true" @keydown.enter.prevent="addFilter" @keydown.space.prevent="addFilter"/>
+                                @focus="showDropdown = true" 
+                                @keydown.enter.prevent="addFilter" 
+                                @keydown.space.prevent="addFilter"
+                                @keydown.backspace="handleBackspace"
+                            />
                         </span>
 
                         <button @click="search" class="ml-auto bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 font-semibold">Search</button>
@@ -82,6 +86,21 @@ function handleClickOutside(event) {
     }
 }
 
+function handleBackspace(event) {
+    if (currentValue.value !== "") {
+        return;
+    }
+
+    if (currentType.value) {
+        event.preventDefault()
+        currentType.value = ""
+        showDropdown.value = true
+    } else if (filters.value.length > 0) {
+        event.preventDefault()
+        filters.value.pop()
+    }
+}
+
 function addFilter() {
     if (currentType.value && currentValue.value.trim() !== "") {
         filters.value.push({ type: currentType.value, value: currentValue.value })
@@ -96,15 +115,19 @@ function removeFilter(index) {
 }
 
 function search() {
-    if (filters.value.length > 0) {
-        const payload = {}
-        filters.value.forEach(f => {
-            payload[f.type] = f.value
-        })
+    const payload = {}
 
+    if (filters.value.length === 0 && currentValue.value.trim() !== "") {
+        filters.value.push({ type: "keyword", value: currentValue.value })
+        currentValue.value = ""
+    }
+
+    filters.value.forEach(f => {
+        payload[f.type] = f.value
+    })
+
+    if (filters.value.length > 0) {
         router.push({ name: "Search", query: { filters: JSON.stringify(payload) } })
-    } else if (currentValue.value.trim()) {
-        router.push({ name: "Search", query: { q: currentValue.value } })
     }
 }
 
