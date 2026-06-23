@@ -3,7 +3,7 @@
         <div class="relative h-[70vh] flex flex-col items-center justify-center text-center bg-[url('https://res.cloudinary.com/wildasset/image/upload/w_1900,f_auto,q_auto/web/branding-2024/homepage-1.jpg')] bg-cover bg-center bg-no-repeat">
 
             <div class="z-10 w-full text-white px-4">
-                <h2 class="text-4xl text-[#003b4a] font-semibold m-6">WAC Recipe Search 3000</h2>
+                <h2 class="text-4xl text-[#003b4a] font-semibold m-6">Recipe Search 3000</h2>
 
                 <div class="relative max-w-3xl mb-4 mx-auto" id="filter-container">
                     <div class ="flex items-center border bg-white rounded-full px-2 py-1 gap-1 text-black flex-nowrap overflow-x-auto">
